@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
+             x:Class="MauiApp1.Views.MainPage"
+             Title="">
+
+    <ContentPage.BindingContext>
+        <viewModels:ExpenseListVM/>
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+
+            <Label Text="Total Today Expenses:" FontSize="40" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                   TextColor="#D600AA"/>
+            
+            <Label x:Name="Expense_Val" Text="{Binding Expense_VM.Total}" FontSize="60" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                       TextColor="#E1E1E1"/>
+
+            <Button Text="Add new expense" MaximumWidthRequest="150" HorizontalOptions="EndAndExpand" Clicked="Button_Clicked" Command="{Binding ShowForm}"/>
+
+            <Entry x:Name="Expense_Title" MaximumWidthRequest="300" Opacity="0" Text="{Binding Expense_VM.Title}"/>
+            <Entry x:Name="Expense_Cost" MaximumWidthRequest="300" Opacity="0" Text="{Binding Expense_VM.Single}"/>
+            <Button x:Name="AddBtn" Text="Add" MaximumWidthRequest="70" Opacity="0" Command="{Binding AddCommand}"/>
+            
+            <Label x:Name="ExpensesListText" Text="Today Expenses:" FontSize="40" FontAttributes="Bold" VerticalTextAlignment="Center" 
+                   HorizontalTextAlignment="Center" TextColor="#D600AA" TranslationY="-200"/>
+
+            <ListView x:Name="expensesList" ItemsSource="{Binding Expenses_List}" Style="{StaticResource listViewStyle}" HorizontalOptions="Center" 
+                      VerticalOptions="Center" TranslationY="-200"/>
+
+        </VerticalStackLayout>
+        
+    </ScrollView>
+
+</ContentPage>
