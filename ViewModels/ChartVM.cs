@@ -82,7 +82,7 @@ namespace MauiApp1.ViewModels
             };
         }
 
-        private List<float> GetExpensesForLast7Days()
+        public List<float> GetExpensesForLast7Days()
         {
             List<float> expenses = new List<float>();
             using (var expenseModelContext = new ExpenseModelContext())
