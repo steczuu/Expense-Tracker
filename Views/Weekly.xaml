@@ -14,6 +14,7 @@
         <Label Text="This Week Expenses:" FontSize="40" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
                TextColor="#D600AA"/>
 
-        <micro:ChartView x:Name="chartView" HeightRequest="500" Chart="{Binding Chart}"/>
+        <micro:ChartView x:Name="chartView" HeightRequest="500" Chart="{Binding Chart}" BackgroundColor="Transparent"/>
+        <Button Text="Refresh" MaximumWidthRequest="150" Command="{Binding Refresh}"/>
     </VerticalStackLayout>
 </ContentPage>

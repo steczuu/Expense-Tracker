@@ -1,4 +1,6 @@
 ﻿using MauiApp1.Models;
+using Microcharts;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -62,8 +64,8 @@ namespace MauiApp1.ViewModels
                     {
                         Title = expense.ExpenseTitle,
                         Single = expense.ExpenseValue,
-                        Total = expense.ExpenseValueTotal,
-                        Date = expense.dateTime
+                        Date = expense.dateTime,
+                        Total = expense.ExpenseValueTotal
                     });
                 }
             }
@@ -71,7 +73,7 @@ namespace MauiApp1.ViewModels
             ShowForm = new Command(
             execute: () =>
             {
-                Expense_VM = new ExpenseVM();
+                Expense_VM = new ExpenseVM();   
                 Expense_VM.PropertyChanged += OnExpensePropertyChanged;
                 IsEditing = true;
             },
@@ -109,6 +111,7 @@ namespace MauiApp1.ViewModels
                 expenseModelContext.Expenses.Add(expense);
                 expenseModelContext.SaveChanges();
 
+
             }, canExecute: () =>
             {
                 return Expense_VM != null &&
@@ -116,6 +119,6 @@ namespace MauiApp1.ViewModels
                        Expense_VM.Single > 0;
             });
 
-        }
+        }    
     }
 }

@@ -16,7 +16,7 @@
             <Label Text="Total Today Expenses:" FontSize="40" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
                    TextColor="#D600AA"/>
             
-            <Label x:Name="Expense_Val" Text="{Binding Expense_VM.Total}" FontSize="60" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+            <Label x:Name="Expense_Val" BindingContext="{Binding Expense_VM}" Text="{Binding Total}" FontSize="60" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
                        TextColor="#E1E1E1"/>
 
             <Button Text="Add new expense" MaximumWidthRequest="150" HorizontalOptions="EndAndExpand" Clicked="Button_Clicked" Command="{Binding ShowForm}"/>

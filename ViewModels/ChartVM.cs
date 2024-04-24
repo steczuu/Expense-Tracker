@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 using Microcharts;
 using SkiaSharp;
 using MauiApp1.Models;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
 {
-    public class ChartVM : ObservableObject
+    public class ChartVM : ObservableObject,INotifyPropertyChanged
     {
-        private Chart _chart;
+        Chart _chart;
         public Chart Chart
         {
             get => _chart;
             set => SetProperty(ref _chart, value);
         }
 
+        public ICommand Refresh { get; }
         public ChartVM()
         {
             List<float> expenses = GetExpensesForLast7Days();
@@ -34,10 +37,44 @@ namespace MauiApp1.ViewModels
                 });
             }
 
+            Refresh = new Command(execute:  () =>
+            {
+                RefreshChart();
+            },
+            canExecute: () =>
+            {
+                return true;
+            });
+
 
             Chart = new BarChart()
             {
                 Entries = (IEnumerable<ChartEntry>)entries,
+                LabelTextSize = 35,
+                LabelOrientation = Orientation.Horizontal,
+                BackgroundColor = SKColor.Parse("#f0f0f0"),
+                LabelColor = SKColor.Parse("#266489")
+            };
+        }
+
+        private void RefreshChart()
+        {
+            List<float> expenses = GetExpensesForLast7Days();
+
+            List<ChartEntry> entries = new List<ChartEntry>();
+            for (int i = 0; i < expenses.Count; i++)
+            {
+                entries.Add(new ChartEntry(expenses[i])
+                {
+                    Label = DateTime.Now.Date.AddDays(-i).ToString("dd/MM/yyyy"),
+                    ValueLabel = expenses[i].ToString("C"),
+                    Color = SKColor.Parse("#266489")
+                });
+            }
+
+            Chart = new BarChart()
+            {
+                Entries = entries,
                 LabelTextSize = 35,
                 LabelOrientation = Orientation.Horizontal,
                 BackgroundColor = SKColor.Parse("#f0f0f0"),
@@ -71,5 +108,6 @@ namespace MauiApp1.ViewModels
             expenses.Reverse(); 
             return expenses;
         }
+
     }
 }
