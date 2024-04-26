@@ -57,7 +57,7 @@ namespace MauiApp1.ViewModels
             };
         }
 
-        private void RefreshChart()
+        public void RefreshChart()
         {
             List<float> expenses = GetExpensesForLast7Days();
 
@@ -105,7 +105,6 @@ namespace MauiApp1.ViewModels
                     expenses.Add(totalExpenses);
                 }
             }
-            expenses.Reverse(); 
             return expenses;
         }
 

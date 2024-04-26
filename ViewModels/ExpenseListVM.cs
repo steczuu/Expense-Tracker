@@ -99,6 +99,7 @@ namespace MauiApp1.ViewModels
                 Expense_VM.PropertyChanged -= OnExpensePropertyChanged;
                 IsEditing = false;
                 RefreshCanExecutes();
+                
 
                 var expense = new ExpenseModel
                 {
