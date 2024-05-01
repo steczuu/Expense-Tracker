@@ -18,7 +18,7 @@ namespace MauiApp1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source = expenses_DB.db");
+            optionsBuilder.UseSqlite("Data Source = _expenses_DB.db");
             optionsBuilder.UseLazyLoadingProxies();
         }
     }
